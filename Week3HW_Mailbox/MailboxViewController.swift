@@ -113,10 +113,16 @@ class MailboxViewController: UIViewController {
             
             var newX = CGFloat(0.0)
             
+            
             if x > 0 {
                 if x > gutter {
-                    newX = messageImageView.frame.size.width
-                }
+                    UIView.animateWithDuration(0.3, animations: {
+                        newX = self.messageImageView.frame.size.width
+                    }, completion: {(finished: Bool) in
+                        UIView.animateWithDuration(0.4, animations: {
+                            self.feedImageView.frame.origin.y = self.feedImageView.frame.origin.y - 86 })
+                     })
+                                    }
             } else {
                 if x < -gutter {
                     newX = -messageImageView.frame.size.width
@@ -135,26 +141,50 @@ class MailboxViewController: UIViewController {
                 self.listImageView.frame.origin.x -= self.feedImageView.frame.size.width
                 }, completion: nil)
             
+            
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.messageImageView.frame.origin.x = newX
             })
-            
-            if (x > gutter || x < -gutter) {
-                UIView.animateWithDuration(0.3, delay: 0.5, options: nil, animations: {
-                    self.feedImageView.frame.origin.y = self.feedImageView.frame.origin.y - 86
-                }, completion: nil)
-                
-            }
+
         }
     }
     
     @IBAction func onTapListButton(sender: AnyObject) {
+        var gutter = CGFloat(60.0)
+        var x = messageImageView.frame.origin.x
+        var newX = CGFloat(0.0)
+        
         listButton.alpha = 0
+        if (x > gutter || x < -gutter) {
+            UIView.animateWithDuration(0.3, delay: 0.5, options: nil, animations: {
+                self.feedImageView.frame.origin.y = self.feedImageView.frame.origin.y
+                }, completion: {(finished: Bool) in
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.messageImageView.frame.origin.x = 0
+                    })
+            })
+
+            
+        }
     }
     
     @IBAction func onTapDeferButton(sender: AnyObject) {
+        var gutter = CGFloat(60.0)
+        var x = messageImageView.frame.origin.x
+        var newX = CGFloat(0.0)
+        
         deferButton.alpha = 0
+        if (x > gutter || x < -gutter) {
+            UIView.animateWithDuration(0.3, delay: 0.5, options: nil, animations: {
+                self.feedImageView.frame.origin.y = self.feedImageView.frame.origin.y
+                }, completion: {(finished: Bool) in
+                    UIView.animateWithDuration(0.3, animations: { () -> Void in
+                        self.feedImageView.frame.origin.y = self.feedImageView.frame.origin.y - 86
+                    })
+            })
+
     }
 
     
+    }
 }
