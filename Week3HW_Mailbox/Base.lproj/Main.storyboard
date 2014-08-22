@@ -16,10 +16,6 @@
                                 <rect key="frame" x="-20" y="53" width="360" height="1423"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed" id="nlX-AP-xOf">
-                                        <rect key="frame" x="20" y="192" width="320" height="1202"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search" id="RJT-rh-xX9">
                                         <rect key="frame" x="20" y="65" width="320" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -56,17 +52,13 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="feed" id="nlX-AP-xOf">
+                                        <rect key="frame" x="20" y="192" width="320" height="1202"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </scrollView>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reschedule" id="yhb-MR-67I">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="list" id="Ab5-FV-PzK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav" id="fZc-qq-VRx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -83,15 +75,38 @@
                                 </segments>
                                 <color key="tintColor" red="0.31764705882352939" green="0.72549019607843135" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </segmentedControl>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G0G-MD-exh">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="list">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTapListButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="PZY-8A-Yo4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iEc-Iq-X9M">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="reschedule">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onTapDeferButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="tkY-sI-Kg9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="archiveImageView" destination="Jj8-Fh-DiZ" id="D9g-Xb-KtV"/>
                         <outlet property="contentView" destination="Bgl-SC-JdF" id="8gg-xt-e3X"/>
+                        <outlet property="deferButton" destination="iEc-Iq-X9M" id="URL-6v-o2D"/>
                         <outlet property="deleteImageView" destination="LOF-yI-DrB" id="LBF-xK-zpx"/>
+                        <outlet property="feedImageView" destination="nlX-AP-xOf" id="cVE-fS-wJe"/>
                         <outlet property="laterImageView" destination="U9T-nV-e4X" id="8NS-xc-SIb"/>
-                        <outlet property="listImageView" destination="2U6-3g-Buz" id="gBg-GC-zzs"/>
+                        <outlet property="listButton" destination="G0G-MD-exh" id="0ln-bK-vdn"/>
+                        <outlet property="listImageView" destination="2U6-3g-Buz" id="6CR-2a-byd"/>
                         <outlet property="messageImageView" destination="6am-re-dZn" id="sOA-qp-VEw"/>
                         <outlet property="scrollView" destination="QxD-4X-uvp" id="kVM-41-Xhh"/>
                         <outlet property="segmentedControl" destination="GUi-SQ-wOp" id="dlg-gu-rMW"/>

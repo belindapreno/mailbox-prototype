@@ -18,6 +18,10 @@ class MailboxViewController: UIViewController {
     @IBOutlet weak var archiveImageView: UIImageView!
     @IBOutlet weak var listImageView: UIImageView!
     @IBOutlet weak var laterImageView: UIImageView!
+    @IBOutlet weak var feedImageView: UIImageView!
+    @IBOutlet weak var deferButton: UIButton!
+    @IBOutlet weak var listButton: UIButton!
+
     
     var messageFrame: CGPoint!
     var messagePosition: CGPoint!
@@ -49,6 +53,9 @@ class MailboxViewController: UIViewController {
         scrollView.scrollIndicatorInsets.bottom = 50
     }
     
+    
+    
+    
     func onCustomPan(panGestureRecognizer: UIPanGestureRecognizer) {
         var point = panGestureRecognizer.locationInView(view)
         var translate = panGestureRecognizer.translationInView(view)
@@ -57,12 +64,14 @@ class MailboxViewController: UIViewController {
         var gutter = CGFloat(60.0)
         var shortSwipe = CGFloat(180)
         
+        messageImageView.frame.origin.x = messageFrame.x + translate.x
+        var x = messageImageView.frame.origin.x
+        
         if panGestureRecognizer.state == UIGestureRecognizerState.Began {
             
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Changed {
             messageImageView.frame.origin.x = messageFrame.x + translate.x
             
-            var x = messageImageView.frame.origin.x
             var color:UIColor = UIColor.grayColor()
             
             if x > 0 {
@@ -103,7 +112,6 @@ class MailboxViewController: UIViewController {
         } else if panGestureRecognizer.state == UIGestureRecognizerState.Ended {
             
             var newX = CGFloat(0.0)
-            var x = messageImageView.frame.origin.x
             
             if x > 0 {
                 if x > gutter {
@@ -112,14 +120,41 @@ class MailboxViewController: UIViewController {
             } else {
                 if x < -gutter {
                     newX = -messageImageView.frame.size.width
+                    if x > -shortSwipe {
+                        deferButton.alpha = 1
+                    } else {
+                         listButton.alpha = 1
+                }
                 }
             }
+
+            UIView.animateKeyframesWithDuration(0.5, delay: 0, options: nil, animations: {
+                self.archiveImageView.frame.origin.x += self.feedImageView.frame.size.width
+                self.deleteImageView.frame.origin.x += self.feedImageView.frame.size.width
+                self.laterImageView.frame.origin.x -= self.feedImageView.frame.size.width
+                self.listImageView.frame.origin.x -= self.feedImageView.frame.size.width
+                }, completion: nil)
             
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.messageImageView.frame.origin.x = newX
             })
+            
+            if (x > gutter || x < -gutter) {
+                UIView.animateWithDuration(0.3, delay: 0.5, options: nil, animations: {
+                    self.feedImageView.frame.origin.y = self.feedImageView.frame.origin.y - 86
+                }, completion: nil)
+                
+            }
         }
     }
     
+    @IBAction func onTapListButton(sender: AnyObject) {
+        listButton.alpha = 0
+    }
+    
+    @IBAction func onTapDeferButton(sender: AnyObject) {
+        deferButton.alpha = 0
+    }
+
     
 }
