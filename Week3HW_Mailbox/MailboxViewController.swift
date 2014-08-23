@@ -76,23 +76,23 @@ class MailboxViewController: UIViewController {
             
             if x > 0 {
                 if x < gutter {
-                    color = UIColor.lightGrayColor()
-                    archiveImageView.alpha = 1
+                    color = UIColor(red: 235/255.0, green: 235/255.0, blue: 235/255.0, alpha: 1.0)
+                    archiveImageView.alpha = 0.4
                 } else if x < shortSwipe {
                    color = UIColor(red: 97/255.0, green: 217/255.0, blue: 97/255.0, alpha: 1.0)
                     archiveImageView.alpha = 1
                     deleteImageView.alpha = 0
-                    archiveImageView.frame.origin.x = messageImageView.frame.origin.x - 50
+                    archiveImageView.frame.origin.x = messageImageView.frame.origin.x - 60
                 } else {
                     color = UIColor(red: 239/255.0, green: 83/255.0, blue: 10/255.0, alpha: 1.0)
                     deleteImageView.alpha = 1
                     archiveImageView.alpha = 0
-                    deleteImageView.frame.origin.x = messageImageView.frame.origin.x - 50
+                    deleteImageView.frame.origin.x = messageImageView.frame.origin.x - 60
                 }
             } else {
                 if x > -gutter {
                     color = UIColor.lightGrayColor()
-                    laterImageView.alpha = 1
+                    laterImageView.alpha = 0.4
                 } else if x > -shortSwipe {
                     color = UIColor(red: 255/255.0, green: 204/255.0, blue: 0/255.0, alpha: 1.0)
                     laterImageView.alpha = 1
@@ -122,7 +122,7 @@ class MailboxViewController: UIViewController {
                         UIView.animateWithDuration(0.4, animations: {
                             self.feedImageView.frame.origin.y = self.feedImageView.frame.origin.y - 86 })
                      })
-                                    }
+                }
             } else {
                 if x < -gutter {
                     newX = -messageImageView.frame.size.width
