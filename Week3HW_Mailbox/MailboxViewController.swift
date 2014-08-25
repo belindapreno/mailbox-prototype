@@ -82,12 +82,12 @@ class MailboxViewController: UIViewController {
                    color = UIColor(red: 97/255.0, green: 217/255.0, blue: 97/255.0, alpha: 1.0)
                     archiveImageView.alpha = 1
                     deleteImageView.alpha = 0
-                    archiveImageView.frame.origin.x = messageImageView.frame.origin.x - 60
+                    archiveImageView.frame.origin.x = messageImageView.frame.origin.x - 50
                 } else {
                     color = UIColor(red: 239/255.0, green: 83/255.0, blue: 10/255.0, alpha: 1.0)
                     deleteImageView.alpha = 1
                     archiveImageView.alpha = 0
-                    deleteImageView.frame.origin.x = messageImageView.frame.origin.x - 60
+                    deleteImageView.frame.origin.x = messageImageView.frame.origin.x - 50
                 }
             } else {
                 if x > -gutter {
