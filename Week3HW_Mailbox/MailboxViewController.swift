@@ -71,6 +71,10 @@ class MailboxViewController: UIViewController {
             allContentView.frame.origin.x = point.x
             
         } else if edgeGesture.state == UIGestureRecognizerState.Ended {
+            
+            UIView.animateWithDuration(0.3, animations: {
+//                self.allContentView.frame.origin.x = 0
+            })
 
         }
     }
