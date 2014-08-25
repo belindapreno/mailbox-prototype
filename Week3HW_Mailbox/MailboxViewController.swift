@@ -10,6 +10,7 @@ import UIKit
 
 class MailboxViewController: UIViewController {
 
+    @IBOutlet weak var allContentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var messageImageView: UIImageView!
@@ -29,13 +30,17 @@ class MailboxViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        var edgeGesture = UIScreenEdgePanGestureRecognizer(target: self, action: "onEdgePan:")
+        edgeGesture.edges = UIRectEdge.Left
+        allContentView.addGestureRecognizer(edgeGesture)
+        
         segmentedControl.selectedSegmentIndex=1;
         
         scrollView.contentSize = CGSizeMake(320, 2000)
+        
         var panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "onCustomPan:")
         messageImageView.addGestureRecognizer(panGestureRecognizer)
         messageFrame = messageImageView.frame.origin
-//        messagePosition = messageImageView.x
 
     }
 
@@ -54,6 +59,21 @@ class MailboxViewController: UIViewController {
     }
     
     
+    func onEdgePan(edgeGesture: UIScreenEdgePanGestureRecognizer) {
+        var point = edgeGesture.locationInView(view)
+        var translate = edgeGesture.translationInView(view)
+        var velocity = edgeGesture.velocityInView(view)
+        
+        if edgeGesture.state == UIGestureRecognizerState.Began {
+       
+        } else if edgeGesture.state == UIGestureRecognizerState.Changed {
+            
+            allContentView.frame.origin.x = point.x
+            
+        } else if edgeGesture.state == UIGestureRecognizerState.Ended {
+
+        }
+    }
     
     
     func onCustomPan(panGestureRecognizer: UIPanGestureRecognizer) {
@@ -185,6 +205,8 @@ class MailboxViewController: UIViewController {
 
     }
 
-    
+
     }
+    
+
 }
